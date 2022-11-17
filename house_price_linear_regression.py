@@ -44,3 +44,5 @@ x2 = 8
 x3 = 0
 
 y = a + b1*x1 + b2*x2 + b3*x3 
+print(casa_nova2)
+print(y)
