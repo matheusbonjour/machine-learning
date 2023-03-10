@@ -38,13 +38,14 @@ persistence_fc['time'] = persistence_fc.time + np.timedelta64(5, 'D').astype('ti
 # target data
 target = z500.sel(time=test_years)['z']
 # compute RMSE
-computed_weighted_rmse(persistence_fc, target)
-
+rmse_data = computed_weighted_rmse(persistence_fc, target)
+print(rmse_data['z'].values)
 clim = z500.sel(time=train_years).groupby('time.dayofyear').mean()
 # compute RMSE
 
 
-computed_weighted_rmse(clim.sel(dayofyear=z500.sel(time=test_years).time.dt.dayofyear), z500)
+rmse_clim = computed_weighted_rmse(clim.sel(dayofyear=z500.sel(time=test_years).time.dt.dayofyear), z500)
+print(rmse_clim['z'].values)
 
 def get_train_valid_test_dataset(lead_steps, z500_dataset):
     # Split train, valid and test dataset
